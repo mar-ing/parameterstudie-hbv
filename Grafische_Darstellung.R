@@ -43,8 +43,11 @@ names_con <- c("ASSY plus VG L=430 mit FT-Verb.","ASSY plus VG L=430 ohne FT-Ver
 # Liste der Nachweise die geplottet werden k?nnen
 nachweis <- c("sig_t","sig_c","tau_t","V_v","w")
 
+# Start Test
 data <- sim_data[which(sim_data$con_parameter %like% "ASSY plus VG L=430 ohne FT-Verb."),] # Subset für ein VBM 
 ref <- data[which(data$parameter %like% "Referenz"),]
+
+# Ende Test
 
 plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
   
@@ -65,11 +68,16 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
                     "Nachweis der Schubspannung im Holz",
                     "Nachweis des Verbindungsmittels","Nachweis der Verformung")
   # Spaltenbezeichnungen der Nachweise in Ergebnisdatei - genaue Uebereinstimmung notwendig
-  colname_eta <- c("t.eta_inst_gzt_hgzt_2_sep_sig_x_u","t.eta_t37_gzt_hgzt_2_sep_sig_x_u","t.eta_fin_gzt_hgzt_2_sep_sig_x_u",
-                   "c.eta_inst_gzt_hgzt_2_sig_x_o","c.eta_t37_gzt_hgzt_2_sig_x_o","c.eta_fin_gzt_hgzt_2_sig_x_o",
-                   "t.eta_inst_gzt_hgzt_2_tau","t.eta_t37_gzt_hgzt_2_tau","t.eta_fin_gzt_hgzt_2_tau",
-                   "v.eta_inst_gzt_hgzt_2_Vy","v.eta_t37_gzt_hgzt_2_Vy","v.eta_fin_gzt_hgzt_2_Vy",
-                   "g.eta_inst_gzg_hgzg_w","g.eta_fin_gzg_hgzg_w")
+  colname_eta <- c("t.eta_inst_gzt_ku_2_sep_sig_x_u","t.eta_t37_gzt_ku_2_sep_sig_x_u","t.eta_fin_gzt_ku_2_sep_sig_x_u",
+                   "c.eta_inst_gzt_ku_2_sig_x_o","c.eta_t37_gzt_ku_2_sig_x_o","c.eta_fin_gzt_ku_2_sig_x_o",
+                   "t.eta_inst_gzt_ku_2_tau","t.eta_t37_gzt_ku_2_tau","t.eta_fin_gzt_ku_2_tau",
+                   "v.eta_inst_gzt_ku_2_Vy","v.eta_t37_gzt_ku_2_Vy","v.eta_fin_gzt_ku_2_Vy",
+                   "g.eta_inst_gzg_ks_w","g.eta_fin_gzg_ks_w")
+        #c("t.eta_inst_gzt_hgzt_2_sep_sig_x_u","t.eta_t37_gzt_hgzt_2_sep_sig_x_u","t.eta_fin_gzt_hgzt_2_sep_sig_x_u",
+    #               "c.eta_inst_gzt_hgzt_2_sig_x_o","c.eta_t37_gzt_hgzt_2_sig_x_o","c.eta_fin_gzt_hgzt_2_sig_x_o",
+    #               "t.eta_inst_gzt_hgzt_2_tau","t.eta_t37_gzt_hgzt_2_tau","t.eta_fin_gzt_hgzt_2_tau",
+    #               "v.eta_inst_gzt_hgzt_2_Vy","v.eta_t37_gzt_hgzt_2_Vy","v.eta_fin_gzt_hgzt_2_Vy",
+    #               "g.eta_inst_gzg_hgzg_w","g.eta_fin_gzg_hgzg_w")
   # Erstelle Listen mit Spaltennummern die fuer die Konfiguration betrachtet werden
   n_eta <- c()
   for (n in colname_eta){
@@ -94,7 +102,7 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
     for(j in 0:rep){
       # Zeilenbeschriftung 
       eta[i+j,"name_par"]  <- name
-      # Bemessungszwitpunkt
+      # Bemessungszeitpunkt
       eta[i+j,"eta_time"]  <- eta_time[j+1]
       # Ermittlung der mininalen und maximalen Ausnutzungsgrade
       eta[i+j,"eta_min"]   <- min(data[which(data$parameter %like% name),num_eta[j+1]],na.rm = FALSE)
@@ -108,7 +116,7 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
       eta[i+j,"x"]         <- x_k-j*0.25
       eta[i+j,"eta_col"]   <- eta_col[j+1]
       # Refernzwerte fuer Plot
-      #eta[i+j,"eta_ref"] <- ref[num_eta[j+1]]
+      eta[i+j,"eta_ref"] <- ref[num_eta[j+1]]
       # Test: Welche Daten werden ausgelesen
       print(eta[i+j,"param_min"])
       print(eta[i+j,"eta_min"])
@@ -122,12 +130,12 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
   c_num <- seq(0:num*3)
   
   #Schriftart
-  schrift <- "Times New Roman"
+  schrift <- "Arial"
   
   # Plot erstellung 
   plot <- ggplot(eta) + 
     geom_hline(aes(yintercept=1),color="red",size=0.5,linetype="dashed") +
-    ggtitle(paste(plot_title[num_eta[4]],names_con,sep=" ")) + ylim(min(eta$eta_min,na.rm = FALSE)-0.5,max(eta$eta_max,na.rm = FALSE)+0.5) + xlim(-num,0) +
+    ggtitle(paste(plot_title[num_eta[4]],names_con,sep=" ")) + ylim(min(eta$eta_min,na.rm = FALSE)-2,max(eta$eta_max,na.rm = FALSE)+1) + xlim(-num,0) +
     geom_segment(aes(x=x, xend=x, y=eta_min, yend=eta_max), color=eta$eta_col,size=1) +
     geom_point(  aes(x=x, y=eta_min),    color=eta$eta_col, size=2 ) +
     geom_text(   aes(x=x, y=eta_min-0.02,label=param_min,family=schrift,adj=1),size=3) +
