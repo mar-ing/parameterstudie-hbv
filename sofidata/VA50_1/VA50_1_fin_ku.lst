@@ -1,0 +1,39 @@
+ SOFiSTiK AG - Educational-Version -
+ RESULTS - AUSGABE FUER FINITE ELEMENTE V 2020-6.0      14.05.21       Seite:    
+ 
+ SYSTEM
+ 
+    1 +PROG RESULTS
+    2 $ Dat : D:\...\sofidata\VA50_1\VA50_1_fin_ku.dat  (#009)            14.05.2021
+    3 $ Job : DESKTOP-N49NS9M:009175                                           15:35
+    4 KOPF BETON BALKEN SCHNITTKRÄFTE KU T=00
+    5 LET#VAL1 1000000+1 $+($(n_y)DIV(2))*100000
+    6 LET#VAL2 #VAL1+(#IX1-1)*2-1
+    7
+    8 LET#I 1
+    9 LOOP#J LF
+   10 XLSX NAME VA50_1_RES_C_FIN_KU_#LF(#J).XLSX  WS "sofisheet"
+   11 FILT NAME "beam_for.nr" TYP LOOP VAL1 #VAL1 VAL2 #VAL2 INKR 1
+   12
+   13 $JOIN SPA1 "beam__sm.nr" SPA2 "beam_for.nr"
+   14 LF #I
+   15 STAB TYP N STYP STAB DARS DLST
+   16 STAB TYP MY STYP STAB DARS DLST
+   17 STAB TYP MZ STYP STAB DARS DLST
+   18 STAB TYP VZ STYP STAB DARS DLST
+   19
+   20 STAB TYP SIGO STYP STAB DARS DLST
+   21 STAB TYP SIGU STYP STAB DARS DLST
+   22 STAB TYP STAU STYP STAB DARS DLST
+   23 LET#I #I+1
+   24 ENDLOOP
+   25 ENDE
+ 
+      SOFiSTiK AG - Educational-Version -
+      RESULTS - AUSGABE FUER FINITE ELEMENTE V 2020-6.0      14.05.21       Seite:  68
+ 
+      SYSTEM
+      Beton Balken Schnittkräfte Ku t=00
+ 
+ 
+ 

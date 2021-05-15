@@ -1,0 +1,438 @@
+#define titl=VA51_42
+#define template=hbv_bemess_mech
+#define parameter=Holzgüte
+#define connection=screws
+#define label=GL20h
+#define l_x=8.1
+#define l_y=1.35
+#define h_c=0.1
+#define h_t=0.32
+#define b_t=0.24
+#define mat_t=GL20h
+#define mat_c=C30/37
+#define n_v_x=24
+#define f_v_tens_k=17
+#define f_v_ax_k=16
+#define t_v=0.0075
+#define alpha_v=45
+#define mu_v=0.25
+#define con_parameter=VG-48-7,5x165
+#define n_fem=0.1
+#define g_1=2
+#define q_1=3.5
+#define q_cat=Q_B
+#define a_s_l=1.88
+#define CEM=R
+#define rh=65
+#define t0_creep=30
+#define t_creep=18250
+#define t0_shrink=2
+#define t_shrink=18250
+#define gamma_t=1.25
+#define gamma_c=1.5
+#define alpha_cc=0.85
+#define gam_g=1.35
+#define gam_q=1.5
+#define fakt_g_t37=1
+#define gam_sh=1.35
+#define gam_sh_t37=0.6
+#define gam_sh_fin=0.9
+#define k_mod_t_perm=0.6
+#define k_mod_t_medi=0.8
+#define k_mod_t_long=0.7
+#define k_mod_t_shor=0.9
+#define k_mod_t_inst=1.1
+#define gam_t=1.25
+#define gam_c=1.5
+#define gam_s=1.15
+#define k_def_t=0.6
+#define k_mod_v_perm=0.71
+#define k_mod_v_medi=0.82
+#define k_mod_v_long=0.77
+#define k_mod_v_shor=0.87
+#define k_mod_v_inst=0.97
+#define gam_v=1.25
+#define k_def_v=1.2
+#define w_lim_inst=27
+#define w_lim_fin=40.5
+#define beta0=0.65
+#define betan=0.7
+#define t_fi=90
+#define d_char_0=0.0585
+#define d_char_n=0.063
+#define d_fi_ef=0.07
+#define b_t_fi=0.1
+#define h_t_fi=0.25
+#define u_t_fi=0.6
+#define a_t_fi=0.025
+#define k_mod_fi_c=1
+#define k_mod_fi_m=1
+#define k_mod_fi_e_t=1
+#define w_t_y_fi=0.00104166666666667
+#define delta_c_dur_add=0
+#define delta_c_dur_st=0
+#define delta_c_dur_gam=0
+#define c_min_dur=15
+#define delta_c_dev=10
+#define d_s_u=6
+#define c_min=15
+#define c_nom=25
+#define d_c=0.072
+#define t_class=GL20h
+#define e_t_p=8400
+#define f_t_m_k=20
+#define f_t_t0_k=16
+#define f_t_c0_k=20
+#define rho_t_k=340
+#define rho_t_mean=370
+#define f_t_v_k=3.5
+#define k_cr=0.71
+#define f_t_t0_d=12.8
+#define f_t_c0_d=16
+#define f_t_v_d=2.8
+#define f_t_m_d=16
+#define c_class=C30/37
+#define e_c_m=32840
+#define f_c_c_m=38
+#define f_c_c_k=30
+#define f_c_t_m=2.9
+#define f_c_t_k005=2.03
+#define f_c_c_d=17
+#define f_c_t_d=1.15033333333333
+#define psi_0=0.7
+#define psi_1=0.5
+#define psi_2=0.3
+#define b_c=0.675
+#define a_t=0.0768
+#define wy_t=0.004096
+#define iy_t=0.00065536
+#define a_c=0.0675
+#define wy_c=0.001125
+#define iy_c=5.625e-05
+#define gkla=20
+#define f_t_t0_k_fi=18.4
+#define f_t_c0_k_fi=23
+#define f_t_v_k_fi=4.025
+#define f_t_m_k_fi=23
+#define h_null=0.1
+#define phi=3.5
+#define beta_rh=1124.33125
+#define alpha_ds1=6000
+#define alpha_ds2=110
+#define eps_cd_0=0.553682
+#define kh=1000
+#define eps_cd_inf=0.55
+#define eps_ca_inf=0.05
+#define eps_cs_inf=0.6
+#define k_s_inst=79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2,79.2
+#define k_u_inst=52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8,52.8
+#define a_v=0.12,0.24,0.36,0.48,0.6,0.72,0.84,0.96,1.08,1.2,1.32,1.44,1.56,1.68,1.8,1.92,2.04,2.16,2.28,2.4,2.52,2.64,2.76,2.88
+#define vcrd_k=2
+#define vcrdmin_vmin=0.542217668469038
+#define vcrdmin=26.3517786875953
+#define crdc=0.12
+#define rho_c_l=0.00261111111111111
+#define sig_n_c_ed=0
+#define vcrd=33.6717172119273
+#define iter_count=5
+#define h_c_eff_iter=0.085
+#define h_c_eff_gzg=0.09
+#define h_c_eff_gzt=0.085
+#define h_c_eff_inst_gzg=0.09
+#define h_c_eff_t37_gzg=0.09
+#define h_c_eff_fin_gzg=0.09
+#define h_c_eff_inst_gzt=0.085
+#define h_c_eff_t37_gzt=0.085
+#define h_c_eff_fin_gzt=0.085
+#define abbruch=FALSE
+#define a_c_eff_gzg=0.06075
+#define a_c_eff_gzt=0.057375
+#define w_c_y_eff_gzg=0.00091125
+#define w_c_y_eff_gzt=0.0008128125
+#define gam_ks=0.485105239097598
+#define gam_ku=0.433260026177907
+#define ei_eff_gzg=25114868.51
+#define ei_eff_gzt=24399497.45
+#define e_t_fin_ks=5250
+#define e_c_fin_ks=3478.41
+#define k_s_fin=36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36
+#define e_t_t37_ks=6461.54
+#define e_c_t37_ks=4019.28
+#define k_s_t37=44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5,44.5
+#define e_t_fin_ku=5250
+#define e_c_fin_ku=3429.98
+#define k_u_fin=24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24
+#define e_t_t37_ku=6461.54
+#define e_c_t37_ku=3930.46
+#define k_u_t37=29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7
+#define e_c_t37=4019.28
+#define e_c_fin=3478.41
+#define e_t_t37=6461.54
+#define e_t_fin=5250
+#define old_index=42
+!#!inst_ku
++PROG AQUA urs:1
+KOPF MATERIALIEN
+NORM EN 1992-2004
+NORM EN 1995-2004
+BETO NR 1 ART C FCN $(f_c_c_k) EC $(e_c_m)
+STAH NR 2 ART B GUET 500A
+HOLZ NR 3 ART GL GKLA $(gkla) EP $(e_t_p)
+STAH NR 4 ART S FY 355 ES 100000000 GAM 0  $ Koppelstäbe
+STAH NR 5 ART S FY 355 ES 210000 GAM 0  $ Fiktives Material für Verbindungsmittel
+QB NR 1 MNR 1 H $(h_c_eff_inst_gzt)*1000 B $(b_c)*1000
+QB NR 2 H $(h_t)*1000 B $(b_t)*1000 MNR 3
+QC NR 3 D 40 MNR 4
+
+LET#K $(k_u_inst)
+LOOP#1 K
+LET#r (#K(#1)/3*(($(h_c_eff_inst_gzt)/2+$(h_c)-$(h_c_eff_inst_gzt))^3+($(h_t)/2)^3)/210000*4/3.14159)^(1/4)  
+QC NR 4+#1 MNR 5 D #r*2*1000
+ENDLOOP
+
+ENDE
+
++PROG SOFIMSHA urs:2
+KOPF SYSTEM
+ECHO VOLL
+SYST 3D  GDIV 100000
+
+LET#x 0         $ Feld mit x-Koordinaten
+$LET#y 0         $ Feld mit y-Koordinaten
+LET#pos 0       $ Position der Verbindungsmittel im Feld x
+LET#rest 0      $ Verschiebung der x-Koordinaten, sodass es zu Verbindungsmittel passt
+LET#a $(a_v)      $ Abstände der Verbdinungsmittel bezogen auf x=0
+LET#poskop 0    $ Position der Koppelstäbe
+LET#lh $(l_x)/2   $ Halbe Spannweite (Koordinaten werden später gespiegelt)
+
+STO#ix1 (#lh)DIV($(n_fem)) $ Schleife über ganzzahligen Anteil von halber Spannweite/Netzdichte
+LOOP#i #ix1
+LET#x(#i) (#i)*$(n_fem)    $ Regelmäßige Abstände = Netzdichte
+IF #i==(#ix1-1)
+LET#x(#i) #lh          $ Erzeugt in jedem Fall immer Koordinate in Feldmitte
+ENDIF
+ENDLOOP
+
+LET#nkop 0           $ Schleifenzähler = Anzahl Koppelstäbe
+LOOP#i #lh/($(n_fem))
+LET#poskop(#i) (#i)      $ Koppelstäbe in reg. Abständen
+LET#nkop #nkop+1
+ENDLOOP
+
+LET#ca 0    $ Schleifenzähler = Anzahl Verbindungsmittel
+LOOP#i a    $ Ersetzt einzelne x-Koordinaten, falls VM nicht ins Netz-Raster fallen
+LET#pos(#i) DIV(#a(#i),$(n_fem))       $ Position des VM im Koordinaten-Feld
+LET#rest(#i) MOD(#a(#i),$(n_fem))      $ Korrekturwert
+LET#x(#pos(#i)) #x(#pos(#i))+#rest(#i)
+STO#ca #ca+1
+ENDLOOP
+
+LET#ckop 0        $ Neuer Zähler für Koppelstäbe
+LOOP#i #nkop      $ Schleife über alle Koppelstäbe
+LET#bool 101      $ Indikator, ob Koppelstab über Verbindungsmittel liegt
+LOOP#j #ca        $ Schleife über Verbindungsmittel
+        IF #poskop(#i)==#pos(#j)           $ Trifft Kop.Stab VM?
+        IF #poskop(#i)+2==#pos(#j+1)       $ Trifft bei Verschiebung wieder VM?
+        LET#bool -1
+        ENDIF
+        LET#bool 1
+        ENDIF
+ENDLOOP #bool>100                          $ Schleife bricht ab, wenn VM gefunden wird, das Kopplung trifft
+
+IF #bool==-1      $ Trifft Kop. Stab VM und bei Verschiebung wieder VM wird Kopplung übersprungen
+LET#ckop #ckop
+ENDIF
+IF #bool==1       $ Trifft Kop. Stab VM, aber nicht nächstes VM wird Kopplung um 2 Positionen verschoben
+LET#poskop(#ckop) #poskop(#i)+2
+LET#ckop #ckop+1
+ENDIF
+IF #bool==101     $ Trifft Kop. Stab kein VM bleibt es
+LET#poskop(#ckop) #poskop(#i)
+LET#ckop #ckop+1
+ENDIF
+
+ENDLOOP
+
+LOOP#i #ckop      $ Spiegelung der Koppelstäbe
+LET#poskop(#ckop+#i) 2*#ix1-2-#poskop(#i)
+ENDLOOP
+
+LOOP#i #ca         $ Spiegelung der VM
+LET#pos(#ca+#i) 2*#ix1-2-#pos(#i)
+ENDLOOP
+
+$STO#ny ($(l_y)DIV$(n_fem))  $ Erzeuge y-Koordinaten
+$PRT#ny
+$LOOP#i $(n_y)*#ny+1
+$LET#y(#i) $(l_y)/#ny*#i
+$ENDLOOP
+
+LOOP#i #ix1-1          $ Spiegelung der x-Koordinaten
+LET#x(#ix1+#i) 2*#lh-#x(#ix1-2-#i)
+ENDLOOP
+
+$ Knoten Erzeugung
+LOOP#ix x
+
+KNOT NR 1000000+#ix X #x(#ix) Y 0 Z -$(h_c)+$(h_c_eff_inst_gzt)/2  $ Platte
+
+KNOT NR 2000000+#ix X #x(#ix) Y 0 Z +$(h_t)/2  $ Balken
+KNOT NR 3000000+#ix X #x(#ix) Y 0 Z 0   $ Fuge
+
+ENDLOOP
+
+$ Lager
+KNOT NR 1000000+(#ix1-1)*2 FIX PY
+KNOT NR 1000000 FIX PY
+KNOT NR 2000000 FIX PPMX
+KNOT NR 2000000+(#ix1-1)*2 FIX PZ
+
+
+$ Beton Balken
+LET#start 1000000
+LET#ka    1000000
+STAB NR (#start+1 #start+(#ix1-1)*2 1) KA (#ka 1) KE (#ka+1 1) QNR 1
+
+
+$ Holzbalken
+LET#start 2000000
+LET#ka    2000000
+STAB NR (#start+1 #start+(#ix1-1)*2 1) KA (#ka 1) KE (#ka+1 1) QNR 2 
+
+
+$ Koppelstäbe
+LOOP#ix poskop
+LET#start 3000000+#ix+1     $+100000*#ia
+LET#ke 1000000+#poskop(#ix) $+10000*(#ia*#ny)
+LET#ka 2000000+#poskop(#ix) $+10000*(#ia*#ny)
+STAB NR #start KA #ka KE #ke QNR 3 ANFA MZ ENDE MZ
+ENDLOOP
+
+
+$ Verbindungsmittel
+
+LOOP#ix pos
+LET#start 4000000+#ix+1
+LET#ke 1000000+#pos(#ix)
+LET#ka 3000000+#pos(#ix)
+STAB NR #start KA #ka KE #ke QNR 4+#ix  ANFA MZ
+LET#ke 2000000+#pos(#ix)
+LET#ka 3000000+#pos(#ix)
+LET#start 5000000+#ix+1
+STAB NR #start KA #ka KE #ke QNR 4+#ix 
+ENDLOOP
+
+ENDE
+
++PROG SOFILOAD urs:3
+KOPF Lasteingabe
+STO#lf "g","q","s"
+LF 1 TYP G FAKG 0 EGZ 0
+STAB VON GRP BIS 10 PA $(l_y)*25*$(h_c) $ Betonplatte
+STAB VON GRP BIS 10 PA $(g_1)*$(l_y)     $ Ausbau
+STAB VON GRP BIS 20 PA $(h_t)*$(b_t)*$(rho_t_k)/100 $ Holz
+
+LF 2 TYP $(q_cat)
+STAB VON GRP BIS 10 PA $(q_1)*$(l_y) $ Nutzlast
+
+LF 3 TYP NONE GAMU 1 GAMF 0
+STAB VON GRP BIS 10 TYP EX PA -$(eps_cs_inf)
+
+ENDE
+
++PROG ASE urs:4
+LF ALLE
+ENDE
+
++PROG AQB urs:5
+LF 1,2,3
+SPAN E
+ENDE
+
++PROG RESULTS urs:6
+KOPF Durchbiegung Feldmitte Ku t=0
+
+LET#i 1
+LOOP#j lf
+
+XLSX NAME $(titl)_res_w_inst_ku_#lf(#j).xlsx  WS "sofisheet"
+FILT NAME "node._ey" TYP EQ OPTI JA VAL1 0
+JOIN SPA1 "n_disp.nr" SPA2  "node._enr"
+LF #i
+
+KNOT TYP UZ DARS DLST
+STRU TYP X ETYP KNOT DARS DLST
+STRU TYP Y ETYP KNOT DARS DLST
+
+LET#i #i+1
+ENDLOOP
+
+ENDE
+
++PROG RESULTS urs:7
+KOPF Beanspruchung Verbindungsmittel Ku t=0
+LET#val1 4000001 $+($(n_y)DIV(2))*100000
+LET#val2 #val1+#ca*2-1
+
+LET#i 1
+LOOP#j lf
+XLSX NAME $(titl)_res_v_inst_ku_#lf(#j).xlsx  WS "sofisheet"
+$JOIN SPA1 "beam__sm.nr" SPA2 "beam_for.nr"
+FILT NAME "beam_for.nr" TYP LOOP VAL1 #val1 VAL2 #val2 INKR 1 OPTI JA
+FILT NAME "beam_for.x"  SBTP A  TYP STAB
+LF #i
+STAB TYP VY STYP STAB DARS DLST
+STAB TYP VZ STYP STAB DARS DLST
+
+LET#i #i+1
+ENDLOOP
+ENDE
+
++PROG RESULTS urs:8
+KOPF Balken Schnittkräfte Ku t=0
+LET#val1 2000000+1 $+($(n_y)DIV(2))*100000
+LET#val2 #val1+(#ix1-1)*2-1
+
+LET#i 1
+LOOP#j lf
+XLSX NAME $(titl)_res_t_inst_ku_#lf(#j).xlsx  WS "sofisheet"
+FILT NAME "beam_for.nr" TYP LOOP VAL1 #val1 VAL2 #val2 INKR 1
+
+$JOIN SPA1 "beam__sm.nr" SPA2 "beam_for.nr"
+LF #i
+STAB TYP N STYP STAB DARS DLST
+STAB TYP MY STYP STAB DARS DLST
+STAB TYP MZ STYP STAB DARS DLST
+STAB TYP VZ STYP STAB DARS DLST
+
+STAB TYP SIGO STYP STAB DARS DLST
+STAB TYP SIGU STYP STAB DARS DLST
+STAB TYP STAU STYP STAB DARS DLST
+LET#i #i+1
+ENDLOOP
+ENDE
+
++PROG RESULTS urs:9
+KOPF Beton Balken Schnittkräfte Ku t=0
+LET#val1 1000000+1 $+($(n_y)DIV(2))*100000
+LET#val2 #val1+(#ix1-1)*2-1
+
+LET#i 1
+LOOP#j lf
+XLSX NAME $(titl)_res_c_inst_ku_#lf(#j).xlsx  WS "sofisheet"
+FILT NAME "beam_for.nr" TYP LOOP VAL1 #val1 VAL2 #val2 INKR 1
+
+$JOIN SPA1 "beam__sm.nr" SPA2 "beam_for.nr"
+LF #i
+STAB TYP N STYP STAB DARS DLST
+STAB TYP MY STYP STAB DARS DLST
+STAB TYP MZ STYP STAB DARS DLST
+STAB TYP VZ STYP STAB DARS DLST
+
+STAB TYP SIGO STYP STAB DARS DLST
+STAB TYP SIGU STYP STAB DARS DLST
+STAB TYP STAU STYP STAB DARS DLST
+LET#i #i+1
+ENDLOOP
+ENDE
+

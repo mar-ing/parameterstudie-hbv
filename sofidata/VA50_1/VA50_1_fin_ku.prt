@@ -1,0 +1,129 @@
+   *** Start: Programm Calculation - Version 2020-6.0   *** Start: Programm AQUA : MATERIALIEN   
+   SOFiSTiK 2020-6.0.1292    AQUA   - GENERAL SECTIONS
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     1. Zugriff
+   +++++ Warnung Nr. 12327 in Programm SOF_INP_MSTEEL ; Eingabezeile:   10
+   Stahl Nummer 4 E-Modul unrealistisch gross
+   RECHENZEIT          0, TOTAL         0
+   DATUM      2021-05-14, 15:35:38
+   
+   
+   
+    +++++    0 FEHLER UND    1 WARNUNGEN +++++
+
+   *** Stop : Programm AQUA : MATERIALIEN   *** Start: Programm SOFIMSHA : SYSTEM   
+   SOFiSTiK 2020-6.0.1292    SOFIMSHA - IMPORT/EXPORT FEM
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     2. Zugriff
+   Arbeitsbereich          38.1 Megabyte
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2021-05-14, 15:35:40
+
+   *** Stop : Programm SOFIMSHA : SYSTEM   *** Start: Programm SOFILOAD : Lasteingabe   
+   SOFiSTiK 2020-6.0.1292    SOFILOAD - LOAD GENERATOR
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     3. Zugriff
+   Projekt: SYSTEM
+   +++++ Warnung Nr. 12289 in Programm SL_IA ; Eingabezeile:    6
+   Einwirkung    G ist noch nicht definiert und wird angelegt für LF 1
+   +++++ Warnung Nr. 12289 in Programm SL_IA ; Eingabezeile:   11
+   Einwirkung  Q_B ist noch nicht definiert und wird angelegt für LF 2
+   RECHENZEIT          0, TOTAL         0
+   RECHENZEIT          0, TOTAL         0
+   DATUM      2021-05-14, 15:35:40
+   
+   
+   
+    +++++    0 FEHLER UND    2 WARNUNGEN +++++
+
+   *** Stop : Programm SOFILOAD : Lasteingabe   *** Start: Programm ASE : LF ALLE   
+   SOFiSTiK 2020-6.0.1292    ASE   - ADVANCED SOLUTION ENGINE
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     4. Zugriff
+   Projekt: SYSTEM
+   +++++ Warnung Nr.   860 in Programm EMOD
+   E-Modul ist unrealistisch gross bei Material 4. Das kann unbeabsichtigte Folgen haben.
+   Sie können auch ASE-GRP2-STEA oder QUEA verwenden um Normalkraftverkürzungen auszuschalten.
+   Diese Warnung kann mit STEU WARN 860 abgeschaltet werden.
+   Lastfall     1
+   
+   Parameter des Gleichungssystems   3
+   (Sparse Direct Solver)
+   Anzahl Gleichungen             1143
+   Profil                         3870
+   Profil nach fill in            9096
+   RECHENZEIT          0, TOTAL         0
+   RECHENZEIT          0, TOTAL         0
+   DATUM      2021-05-14, 15:35:41
+   
+   
+   
+    +++++    0 FEHLER UND    1 WARNUNGEN +++++
+
+   *** Stop : Programm ASE : LF ALLE   *** Start: Programm AQB : LF 1,2,3   
+   SOFiSTiK 2020-6.0.1292    AQB     - DESIGN OF SECTIONS
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     5. Zugriff
+   Projekt: SYSTEM
+   Arbeitsbereich          38.1 Megabyte
+   RECHENZEIT          1, TOTAL         1
+   RECHENZEIT          0, TOTAL         1
+   DATUM      2021-05-14, 15:35:42
+
+   *** Stop : Programm AQB : LF 1,2,3   *** Start: Programm RESULTS : Durchbiegung Feldmitte Ku t=00   
+   SOFiSTiK 2020-6.0.1292    Result Viewer - SOFiSTiK Graphic
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     6. Zugriff
+   Projekt: SYSTEM
+   XLSX-Export - Ziel:
+   va50_1_res_w_fin_ku_g.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_w_fin_ku_q.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_w_fin_ku_s.xlsx
+   RECHENZEIT          2, TOTAL         2
+   DATUM      2021-05-14, 15:35:44
+
+   *** Stop : Programm RESULTS : Durchbiegung Feldmitte Ku t=00   *** Start: Programm RESULTS : Beanspruchung Verbindungsmittel Ku t=00   
+   SOFiSTiK 2020-6.0.1292    Result Viewer - SOFiSTiK Graphic
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     6. Zugriff
+   Projekt: SYSTEM
+   XLSX-Export - Ziel:
+   va50_1_res_v_fin_ku_g.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_v_fin_ku_q.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_v_fin_ku_s.xlsx
+   RECHENZEIT          1, TOTAL         1
+   DATUM      2021-05-14, 15:35:46
+
+   *** Stop : Programm RESULTS : Beanspruchung Verbindungsmittel Ku t=00   *** Start: Programm RESULTS : Balken Schnittkräfte Ku t=00   
+   SOFiSTiK 2020-6.0.1292    Result Viewer - SOFiSTiK Graphic
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     6. Zugriff
+   Projekt: SYSTEM
+   XLSX-Export - Ziel:
+   va50_1_res_t_fin_ku_g.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_t_fin_ku_q.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_t_fin_ku_s.xlsx
+   RECHENZEIT          3, TOTAL         3
+   DATUM      2021-05-14, 15:35:49
+
+   *** Stop : Programm RESULTS : Balken Schnittkräfte Ku t=00   *** Start: Programm RESULTS : Beton Balken Schnittkräfte Ku t=00   
+   SOFiSTiK 2020-6.0.1292    Result Viewer - SOFiSTiK Graphic
+   Ausgabe auf Datei VA50_1_fin_ku.plb
+   Projektdatenbasis VA50_1_fin_ku.cdb    -     6. Zugriff
+   Projekt: SYSTEM
+   XLSX-Export - Ziel:
+   va50_1_res_c_fin_ku_g.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_c_fin_ku_q.xlsx
+   XLSX-Export - Ziel:
+   va50_1_res_c_fin_ku_s.xlsx
+   RECHENZEIT          4, TOTAL         4
+   DATUM      2021-05-14, 15:35:53
+
+   *** Stop : Programm RESULTS : Beton Balken Schnittkräfte Ku t=00   *** Ende der Berechnung!
