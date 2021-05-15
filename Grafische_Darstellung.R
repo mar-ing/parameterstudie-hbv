@@ -6,6 +6,7 @@ library(readxl)
 library(extrafont)
 library(tidyr)
 library(gridExtra)
+library(lubridate)
 font_import()
 import_roboto_condensed()
 #loadfonts(device="win")
@@ -33,26 +34,27 @@ sim_data <- read.table("results.csv",sep=";",header=TRUE,row.names=NULL)
 
 
 # Untersuchte Parameter
-names_param <- c("Balkenbreite","Balkenhöhe","Balkenlänge","Betonhöhe","Holzgüte","Betongüte") #,"h_t","b_t","h_c","n_v_x","t_v")
+names_param <- c("Balkenbreite","Balkenhöhe","Balkenlänge","Balkenabstand","Betonhöhe","Holzgüte","Betongüte") #,"h_t","b_t","h_c","n_v_x","t_v")
 # Parameter die ausgewertet werden (Zeilen im Plot), muss Spaltenbezeichnung der Ergebnisse entsprechen
-sim_param <- c("b_t","h_t","l_x","h_c","mat_t","mat_c")
+sim_param <- c("b_t","h_t","l_x","l_y","h_c","mat_t","mat_c")
 # Nachweisnamen f?r Plot
 names_eta <- c("ETA,sig,t,u,0","ETA,sig,t,u,3-7","ETA,sig,t,u,inf","ETA,sig,c,o,0","ETA,sig,c,o,3-7","ETA,sig,c,o,inf","ETA,tau,t,0","ETA,tau,t,3-7","ETA,tau,t,inf","ETA,V,v,0","ETA,V,v,3-7","ETA,V,v,inf","ETA,w,0","ETA,w,inf") # enth?lt NW-Bezeichnungen
 # Liste der VBM, die unterschieden werden
 names_con <- c("ASSY plus VG L=430 mit FT-Verb.","ASSY plus VG L=430 ohne FT-Verb.","VG-48-7,5x165","Kerve")
 # Liste der Nachweise die geplottet werden k?nnen
 nachweis <- c("sig_t","sig_c","tau_t","V_v","w")
-
+#Datum für Dateinamen
+print_date <- as.Date(Sys.Date(),format="%y%m%d")
 # Start Test
-data <- sim_data[which(sim_data$con_parameter %like% "ASSY plus VG L=430 ohne FT-Verb."),] # Subset für ein VBM 
-ref <- data[which(data$parameter %like% "Referenz"),]
+#data <- sim_data[which(sim_data$con_parameter %like% "ASSY plus VG L=430 ohne FT-Verb."),] # Subset für ein VBM 
+#ref <- data[which(data$parameter %like% "Referenz"),]
 
 # Ende Test
 
 plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
   
   
-  data <- sim_data[which(sim_data$con_parameter %like% names_con),] # Subset für ein VBM 
+  data <-sim_data[which(sim_data$con_parameter %like% "Kerve"),]#names_con),] # Subset für ein VBM 
   eta <- data.frame()     # Dataframe fuer Ergebnisdaten
   ref <- data[which(data$parameter %like% "Referenz"),]
   i   <- 1                # Laufvariable
@@ -61,7 +63,8 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
   eta_time <- c("t=0","t=3-7","t=inf")  # Label fuer Zeitpunkte
   #eta_col  <- c("darkmagenta","mediumorchid2","hotpink1")  # F?rbung des Plots f?r Zeitpunkte
   #eta_col  <- c("aquamarine","aquamarine2","aquamarine4")
-  eta_col  <- c("darkred","darkorange3","darkorange1")
+  eta_col  <- c("darkgreen","chartreuse4","chartreuse")
+  #eta_col  <- c("darkred","darkorange3","darkorange1")
   
   # Ueberschrift fuer Plot
   plot_title <- c("Nachweis der Zugspannung - UK Holz","Nachweis der Druckspannung - OK Beton",
@@ -141,7 +144,7 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
     geom_text(   aes(x=x, y=eta_min-0.02,label=param_min,family=schrift,adj=1),size=3) +
     geom_point(  aes(x=x, y=eta_max),    color=eta$eta_col, size=2 ) +
     geom_text(   aes(x=x, y=eta_max+0.03,label=param_max,family=schrift,adj=0),size=3) +
-    geom_point(aes(x=x,y=eta_ref),color="grey",size=1)+
+    geom_point(aes(x=x,y=eta_ref),color="darkgrey",size=1.5)+
     #geom_segment(aes(x=-c_num+0.25, xend=-c_num+0.25,y=0,yend=max(eta_max,na.rm = FALSE)+0.2),color="black",size=0.5) +
     geom_vline(aes(xintercept=0.25))+
     geom_vline(aes(xintercept=-1+0.25))+
@@ -150,6 +153,8 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
     geom_vline(aes(xintercept=-4+0.25))+
     geom_vline(aes(xintercept=-5+0.25))+
     geom_vline(aes(xintercept=-6+0.25))+
+    geom_vline(aes(xintercept=-7+0.25))+
+    geom_vline(aes(xintercept=-8+0.25))+
     coord_flip() +
     theme_ipsum() +
     theme(legend.position = "bottom",
@@ -157,7 +162,7 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
           panel.grid.major.y = element_blank(),
           plot.title=element_text(face="plain",family=schrift,size=12),
           panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-    scale_x_continuous(name= "Parameter",breaks=seq(-num+0.75,0,1),labels = rev(names_param)) +
+    scale_x_continuous(name= "Parameter",breaks=seq(-num+0.75,0.25,1),labels = rev(names_par)) +
     scale_y_continuous(name ="Ausnutzung [-]" )
   #for(po in 1:3){
   #  plot + geom_vline(aes(xintercept=-po))
@@ -184,7 +189,7 @@ return(plot)
 #  }
 #}
 #
-v_type <- 1
+v_type <- 2
 dataA <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[1],names_con[v_type])
 dataA
 dataB <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[2],names_con[v_type])
@@ -198,7 +203,49 @@ dataE
 
 ## Ausgabe auf einer definierten Seite
 ## Multiplot
+# Schrauben
+print_date <- as.Date(Sys.Date(),format="%y%m%d")
+for (i in 1:3) {
+    plot1 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[1],names_con[i])
+    plot2 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[2],names_con[i])
+    plot3 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[3],names_con[i])
+    plot4 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[4],names_con[i])
+    plot5 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[5],names_con[i])
+  
+  grid.arrange(plot1,plot2,plot3,plot4,plot5,ncol=2)
+  ggsave(paste(print_date,"LolliPop",names_con[i],sep="_",".png"),
+         plot = grid.arrange(plot1,plot2,plot3,plot4,plot5,ncol=2),
+         device="png",
+         path=getwd(),
+         width=320,
+         height=464,
+         units="mm",
+         dpi=300,
+         limitsize=FALSE)
+}
+# Kerven
+{
+print_date <- as.Date(Sys.Date(),format="%y%m%d")
+i <- 4
+names_param4 <- c("Balkenbreite","Balkenhöhe","Balkenlänge","Balkenabstand","Betonhöhe","Holzgüte","Betongüte", "Anzahl Kerven","Kerventiefe")
+sim_param4 <- c("b_t","h_t","l_x","l_y","h_c","mat_t","mat_c","n_v_x","t_v")
+plot1 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[1],names_con[i])
+plot2 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[2],names_con[i])
+plot3 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[3],names_con[i])
+plot4 <- plot_eta_lp(sim_data,names_param4,sim_param4,nachweis[4],names_con[i])
+plot5 <- plot_eta_lp(sim_data,names_param,sim_param,nachweis[5],names_con[i])
 
+grid.arrange(plot1,plot2,plot3,plot4,plot5,ncol=2)
+ggsave(paste(print_date,"LolliPop",names_con[i],sep="_",".png"),
+       plot = grid.arrange(plot1,plot2,plot3,plot4,plot5,ncol=2),
+       device="png",
+       path=getwd(),
+       width=320,
+       height=464,
+       units="mm",
+       dpi=300,
+       limitsize=FALSE)
+}
 grid.arrange(dataA,dataB,dataC,dataD,dataE,ncol=2)
 ggsave(paste("LolliPop",names_con[v_type],sep="",".png"),
        plot = grid.arrange(dataA,dataB,dataC,dataD,dataE,ncol=2),
@@ -209,20 +256,28 @@ ggsave(paste("LolliPop",names_con[v_type],sep="",".png"),
        units="mm",
        dpi=300,
        limitsize=FALSE)
-p
 
-## Infobox f?r Plotseite
+
+## Infobox fuer Plotseite
 infobox <- function(){
   
 }
+
+
+
+i <- 1
 param_text<-""
+ref <- data[which(data$parameter %like% "Referenz" && sim_data$con_parameter %like% names_con[i]),]
 for(i in names_param){
-param_text <- paste(param_text,i,":","\t","\t","\t","\t",sim_data$label[which(sim_data$parameter %like% i)],"\t","\t"," - ","\n")
+param_text <- paste(param_text,i,":","\t","\t","\t","\t",ref$label[which(sim_data$parameter %like% i )],"\t","\t"," - ","\n")
 #param_text <- cat("\t",param_text,i,":","\t","\t","von","\t","bis","\n")
 }
+
+
+
 infobox <- ggplot()+
-  ggtitle("?bersicht")+
-  geom_text(aes(x=0.5,y=0,label=paste("Referenz: ",sim_data$label[which(sim_data$parameter == "Referenz" && sim_data$con_parameter==names_con[v_type])],sep="")),hjust=0)+
+  ggtitle("Übersicht")+
+  geom_text(aes(x=0.5,y=0.8,label=paste("Referenz: ",sim_data$label[which(sim_data$parameter == "Referenz" && sim_data$con_parameter==names_con[i])],sep="")),hjust=0)+
   geom_text(aes(x=0.5,y=1,label=paste("Verbindung: ",names_con[v_type],sep="")),hjust=0)+
   geom_text(aes(x=0.5,y=0.5,label=param_text),hjust=0)+
   xlim(0.5,0.55)
