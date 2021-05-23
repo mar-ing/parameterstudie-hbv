@@ -153,8 +153,8 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
     geom_vline(aes(xintercept=-4+0.25))+
     geom_vline(aes(xintercept=-5+0.25))+
     geom_vline(aes(xintercept=-6+0.25))+
-    geom_vline(aes(xintercept=-7+0.25))+
-    geom_vline(aes(xintercept=-8+0.25))+
+    #geom_vline(aes(xintercept=-7+0.25))+   # falls mehr Variablen
+    #geom_vline(aes(xintercept=-8+0.25))+
     coord_flip() +
     theme_ipsum() +
     theme(legend.position = "bottom",
@@ -286,9 +286,46 @@ infobox
 # Effekte bestimmen
 
 #fs <-data.frame()
-#sim_data[,"h_real"] <- sim_data$h_c_eff_iter / sim_data$h_c
+sim_data[,"h_rel"] <- sim_data$h_c_eff_iter / sim_data$h_c
+param <- "Betonhöhe"
+conn <- "Kerve"
+dat_eff <- sim_data[which((sim_data$parameter %like% param) & sim_data$con_parameter==conn),]
+effekt <- ggplot(dat_eff,aes(x=x,y=y))+
+  #geom_point(aes(x=dat_eff$h_rel,y=dat_eff$g.eta_inst_gzg_ks_w))
+  geom_point(  aes(x=h_rel, y=g.eta_inst_gzg_ks_w),    color="red", size=2 )+
+  #geom_segment(aes(x=min(h_rel),xend=max(h_rel), y=min(g.eta_inst_gzg_ks_w),yend=max(g.eta_inst_gzg_ks_w)),   color="black",size=1)
+  geom_point(  aes(x=h_rel, y=g.eta_fin_gzg_ks_w),     color="orange", size=2 )
+effekt
 
 
+#plot <- ggplot(eta) + 
+#  geom_hline(aes(yintercept=1),color="red",size=0.5,linetype="dashed") +
+#  ggtitle(paste(plot_title[num_eta[4]],names_con,sep=" ")) + ylim(min(eta$eta_min,na.rm = FALSE)-2,max(eta$eta_max,na.rm = FALSE)+1) + xlim(-num,0) +
+#  geom_segment(aes(x=x, xend=x, y=eta_min, yend=eta_max), color=eta$eta_col,size=1) +
+#  geom_point(  aes(x=x, y=eta_min),    color=eta$eta_col, size=2 ) +
+#  geom_text(   aes(x=x, y=eta_min-0.02,label=param_min,family=schrift,adj=1),size=3) +
+#  geom_point(  aes(x=x, y=eta_max),    color=eta$eta_col, size=2 ) +
+#  geom_text(   aes(x=x, y=eta_max+0.03,label=param_max,family=schrift,adj=0),size=3) +
+#  geom_point(aes(x=x,y=eta_ref),color="darkgrey",size=1.5)+
+#  #geom_segment(aes(x=-c_num+0.25, xend=-c_num+0.25,y=0,yend=max(eta_max,na.rm = FALSE)+0.2),color="black",size=0.5) +
+#  geom_vline(aes(xintercept=0.25))+
+#  geom_vline(aes(xintercept=-1+0.25))+
+#  geom_vline(aes(xintercept=-2+0.25))+
+#  geom_vline(aes(xintercept=-3+0.25))+
+#  geom_vline(aes(xintercept=-4+0.25))+
+#  geom_vline(aes(xintercept=-5+0.25))+
+#  geom_vline(aes(xintercept=-6+0.25))+
+#  #geom_vline(aes(xintercept=-7+0.25))+   # falls mehr Variablen
+#  #geom_vline(aes(xintercept=-8+0.25))+
+#  coord_flip() +
+#  theme_ipsum() +
+#  theme(legend.position = "bottom",
+#        panel.grid.minor.y = element_blank(), 
+#        panel.grid.major.y = element_blank(),
+#        plot.title=element_text(face="plain",family=schrift,size=12),
+#        panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#  scale_x_continuous(name= "Parameter",breaks=seq(-num+0.75,0.25,1),labels = rev(names_par)) +
+#  scale_y_continuous(name ="Ausnutzung [-]" )
 ## Funktion Rissh?heniteration Beton
 #h_c_i <- function(tol,zustand,h_c,h_c_eff){
 #  #Beton gerissen?
