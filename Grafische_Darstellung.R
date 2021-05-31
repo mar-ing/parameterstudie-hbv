@@ -84,6 +84,7 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
     num_eta <- c(n_eta[10],n_eta[11],n_eta[12],4)
   } else if(nachweis=="w"){
     num_eta <- c(n_eta[13],n_eta[14],0,5)
+    eta_col  <- c("darkgreen","chartreuse","chartreuse")
     rep <- 1
   } else return("Nachweisbezeichnung pruefen")
     
@@ -106,8 +107,8 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
       # Refernzwerte fuer Plot
       eta[i+j,"eta_ref"] <- ref[num_eta[j+1]]
       # Test: Welche Daten werden ausgelesen
-      print(eta[i+j,"param_min"])
-      print(eta[i+j,"eta_min"])
+      #print(eta[i+j,"param_min"])
+      #print(eta[i+j,"eta_min"])
       }
     i <-i+rep+1   # Laufvariable f?r Nachweiszeitpunkte (bei GZG ist rep=2, bei GZT-Nachweisen rep=3)
     x_k <- x_k-1  # Laufvariable f?r Hilfskoordinate x
@@ -123,15 +124,15 @@ plot_eta_lp <- function(sim_data,names_par,sim_param,nachweis,names_con){
   # Plot erstellung 
   if(names_con %like% "Kerve" & nachweis == "V_v"){
   plot <- ggplot(eta) + 
-    geom_hline(aes(yintercept=min(eta_min,na.rm = FALSE)-0.2),color="white",alpha=(0),size=0.5) +
+    geom_hline(aes(yintercept=min(eta_min,na.rm = FALSE)-0.35),color="white",alpha=(0),size=0.5) +
     geom_hline(aes(yintercept=max(eta_max,na.rm = FALSE)+0.2),color="white",alpha=(0),size=0.5) +
     geom_hline(aes(yintercept=1),color="red",size=0.5,linetype="dashed") +
     ggtitle(paste(plot_title[num_eta[4]])) + ylim(min(eta$eta_min,na.rm = FALSE)-2,max(eta$eta_max,na.rm = FALSE)+1) + xlim(-num,0) +
     geom_segment(aes(x=x, xend=x, y=eta_min, yend=eta_max), color=eta$eta_col,size=1) +
     geom_point(  aes(x=x, y=eta_min),    color=eta$eta_col, size=2 ) +
-    geom_text(   aes(x=x, y=eta_min-0.025,label=param_min,family=schrift,adj=1),size=3) +
+    geom_text(   aes(x=x, y=eta_min-0.03,label=param_min,family=schrift,adj=1),size=3) +
     geom_point(  aes(x=x, y=eta_max),    color=eta$eta_col, size=2 ) +
-    geom_text(   aes(x=x, y=eta_max+0.03,label=param_max,family=schrift,adj=0),size=3) +
+    geom_text(   aes(x=x, y=eta_max+0.035,label=param_max,family=schrift,adj=0),size=3) +
     geom_point(aes(x=x,y=eta_ref),color="darkgrey",size=1.5)+
     geom_vline(aes(xintercept=-1+0.25))+
     geom_vline(aes(xintercept=-2+0.25))+
